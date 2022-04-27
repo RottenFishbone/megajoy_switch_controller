@@ -154,11 +154,7 @@ void loop() {
         enc_pulse[i] = cur_time;
 
         #ifdef DEBUG_INFO
-        Serial.print(cur_time);
-        Serial.print(" | enc");
-        Serial.print(i);
-        Serial.print(": started pulse -- ");
-        Serial.println((int16_t) enc_states[i]);
+        printf("enc%d: mode= pulse, state= %d\n", i, (int16_t)enc_states[i]);
         #endif
         
         continue;
@@ -172,22 +168,14 @@ void loop() {
         enc_states[i] &= ~(1UL);
 
         #ifdef DEBUG_INFO
-        Serial.print(cur_time);
-        Serial.print(" | enc");
-        Serial.print(i);
-        Serial.print(": button disabled -- ");
-        Serial.println((int16_t) enc_states[i]);
+        printf("enc%d: mode= pulse (btn disabled), state= %d\n", i, (int16_t)enc_states[i]);
         #endif
       }
       else{
 
         enc_states[i] = 0UL;
         #ifdef DEBUG_INFO
-        Serial.print(cur_time);
-        Serial.print(" | enc");
-        Serial.print(i);
-        Serial.print(": pulse completed -- ");
-        Serial.println((int16_t) enc_states[i]);
+        printf("enc%d: mode= idle, state= %d\n", i, (int16_t)enc_states[i]);
         #endif
       }
     }
